@@ -67,7 +67,8 @@
   "type": "module",
   "engines": { "node": ">=22.2" },
   "scripts": {
-    "build": "node -e \"require('fs').rmSync('_site',{recursive:true,force:true})\" && eleventy && node scripts/zip.mjs",
+    "build": "node -e \"require('fs').rmSync('_site',{recursive:true,force:true})\" && eleventy && npm run zip",
+    "zip": "node scripts/zip.mjs",
     "serve": "eleventy --serve",
     "check": "node scripts/check.mjs",
     "test": "node scripts/zip.mjs --test && node scripts/check.mjs --test"
@@ -500,7 +501,7 @@ for (const g of games) {
   if (missing.length) throw new Error(`_data/games.json: "${g.slug ?? g.name ?? "?"}" is missing ${missing.join(", ")}`);
 }
 const slugs = new Set(games.map((g) => g.slug));
-const POST_FIELDS = ["title", "date", "game", "summary", "cover"];
+const POST_FIELDS = ["title", "game", "summary", "cover"]; // date is checked against the folder name below
 
 const thumbName = (file) => file.replace(/\.\w+$/, ".webp");
 
@@ -520,6 +521,12 @@ export default function (eleventyConfig) {
       if (missing.length) throw new Error(`${p.inputPath}: missing frontmatter ${missing.join(", ")}`);
       if (p.data.game !== "studio" && !slugs.has(p.data.game)) {
         throw new Error(`${p.inputPath}: game "${p.data.game}" is not a slug in games.json or "studio"`);
+      }
+      // `date` always has a value (Eleventy falls back to the file's date, which on CI is checkout
+      // time), so require it to match the folder's YYYY-MM-DD prefix instead.
+      const folderDate = p.inputPath.match(/devlog\/(\d{4}-\d{2}-\d{2})-/)?.[1];
+      if (folderDate !== p.date.toISOString().slice(0, 10)) {
+        throw new Error(`${p.inputPath}: frontmatter date must be set and match the folder prefix (${folderDate ?? "none"})`);
       }
     }
     return posts.reverse();
@@ -580,7 +587,7 @@ Restore the hook with `git checkout _data/games.json`, then confirm it's clean w
 - [ ] **Step 5: Verify the build runs with no templates yet**
 
 Run: `npm run build`
-Expected: Eleventy reports writing 0 files and copying the passthrough files; `zip:` prints nothing (no press images yet). `ls -a _site` shows `.htaccess`, `img`.
+Expected: no errors; `zip:` prints nothing (no press images yet). `ls -a _site` shows `.htaccess` and `img`.
 If `.htaccess` is **not** in `_site`, change its passthrough entry to `eleventyConfig.addPassthroughCopy({ ".htaccess": ".htaccess" })` and re-run.
 
 - [ ] **Step 6: Commit**
@@ -1069,7 +1076,7 @@ eleventyExcludeFromCollections: true
     <id>{{ absUrl }}</id>
     <updated>{{ post.date | dateToRfc3339 }}</updated>
     <summary>{{ post.data.summary }}</summary>
-    <content type="html">{{ post.content | htmlToAbsoluteUrls(absUrl) }}</content>
+    <content type="html">{{ post.templateContent | htmlToAbsoluteUrls(absUrl) }}</content>
   </entry>
   {%- endfor %}
 </feed>
@@ -1110,18 +1117,18 @@ Expected: the only broken links are the `/press/...` ones (press pages come in T
 
 Then run:
 ```bash
-grep -o 'src="https://toothandscale.com/devlog/2026-10-29-layout-test/shot.png"' _site/devlog/feed.xml
+grep -o 'src=&quot;[^&]*shot.png' _site/devlog/feed.xml
 grep -o '<meta property="og:image" content="[^"]*"' _site/devlog/2026-10-29-layout-test/index.html
 ```
 Expected:
-- the first command prints the absolute image URL. If it doesn't, the async filter isn't running inside the Nunjucks `for`; change the loop to `{%- asyncEach post in collections.posts %}…{%- endeach %}` and re-run.
+- the first command prints `src=&quot;https://toothandscale.com/devlog/2026-10-29-layout-test/shot.png`. The content is autoescaped, which is correct for Atom `type="html"`. Only if it prints a bare `src=&quot;shot.png` is the async filter not running inside the Nunjucks `for`; in that case change the loop to `{%- asyncEach post in collections.posts %}…{%- endeach %}` and re-run.
 - the second command prints `content="https://toothandscale.com/devlog/2026-10-29-layout-test/cover.png"`.
 
 - [ ] **Step 6: Verify the frontmatter validation fails loudly**
 
 Delete the `summary:` line from the test post and run `npx @11ty/eleventy --dryrun`.
 Expected: FAIL with `missing frontmatter summary`.
-Put the line back. Then set `game: nope` and expect FAIL with `game "nope" is not a slug`. Restore `game: alloy`.
+Put the line back. Then set `game: nope` and expect FAIL with `game "nope" is not a slug`. Restore `game: alloy`. Then change the date to `2026-10-30` and expect FAIL with `must be set and match the folder prefix`. Restore `2026-10-29`.
 
 - [ ] **Step 7: Visual check**
 
