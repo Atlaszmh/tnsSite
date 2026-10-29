@@ -1,0 +1,2 @@
+# Static site: serve index.html, not the old WordPress index.php
+DirectoryIndex index.html

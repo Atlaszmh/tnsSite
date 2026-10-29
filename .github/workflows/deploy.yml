@@ -1,0 +1,34 @@
+name: Deploy
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: deploy
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    env:
+      FTP_HOST: ${{ secrets.FTP_HOST }}
+    steps:
+      - uses: actions/checkout@v4
+
+      # Skipped until the FTP secrets are set in the repo. The FTP account must be rooted at
+      # public_html (the main domain), not a game subdomain's folder. The action only deletes files
+      # it uploaded itself, so the subdomain folders and the old WordPress files are left alone.
+      - name: Deploy via FTP
+        if: env.FTP_HOST != ''
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_HOST }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: ./
+          server-dir: ./
+          exclude: |
+            **/.git*
+            **/.git*/**
