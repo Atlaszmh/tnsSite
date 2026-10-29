@@ -28,10 +28,10 @@ Already decided in conversation (not re-litigated here):
 | `/` | Home |
 | `/devlog/` | All posts, newest first |
 | `/devlog/<slug>/` | Post |
-| `/devlog/feed.xml` | Atom feed |
+| `/devlog/feed.xml` | Atom feed (explicit `permalink: /devlog/feed.xml`) |
 | `/press/` | Studio fact sheet |
 | `/press/<game-slug>/` | Game fact sheet |
-| `/404.html` | Not found (wired up through `.htaccess` `ErrorDocument`) |
+| `/404.html` | Not found (explicit `permalink: /404.html`; wired up through `.htaccess` `ErrorDocument`) |
 
 There is no separate games or about page. The nav's Games and About items scroll to sections on the home page.
 
@@ -58,7 +58,7 @@ There is no separate games or about page. The nav's Games and About items scroll
 - **Facts:** developer, release (`press.release`, or "TBA"), platforms, status, price (`press.price`, or "TBA"), links (site/play/wishlist when set).
 - **Description, features** (bullets), **history**.
 - **Video:** `press.video` is either a YouTube URL (rendered as an embed) or a path to a self-hosted `.mp4` (rendered with `<video controls>`). The first pass uses Alloy's 30-second teaser `marketing/2026-10-17-fun-30s-social/wide.mp4`, re-encoded smaller.
-- **Images:** a grid of every file in `press/<slug>/images/`, with 640px-wide WebP thumbnails made by an `eleventy-img` shortcode in the press template (the only place it is used; `outputDir: _site/press/<slug>/thumbs/`, `urlPath: /press/<slug>/thumbs/`, default hashed filenames, nearest-neighbour when the game is `pixelArt`), each linking to the full-size PNG original, plus a **Download all (.zip)** button linking to `/press/<slug>/<slug>-images.zip`. The section and button render only when the folder has images.
+- **Images:** a grid of every file in `press/<slug>/images/`, with 640px-wide WebP thumbnails made by an `eleventy-img` shortcode in the press template (the only place it is used; `outputDir: _site/press/<slug>/thumbs/`, `urlPath: /press/<slug>/thumbs/`, default hashed filenames). For `pixelArt` games, thumbnails must use nearest-neighbour: if eleventy-img exposes no resize-kernel option, that shortcode calls `sharp` (already installed as eleventy-img's dependency) directly with `resize({ width: 640, kernel: "nearest" })` and writes to the same folder, each linking to the full-size PNG original, plus a **Download all (.zip)** button linking to `/press/<slug>/<slug>-images.zip`. The section and button render only when the folder has images.
 - **Logo:** rendered when `press/<slug>/logo.*` exists.
 - **Quotes/awards** and **credits:** each rendered only when the data is non-empty.
 
@@ -143,7 +143,7 @@ Alloy's `links.site` stays empty for now: its subdomain is the game itself, so i
 
 ## Build and repo
 
-- **Dependencies:** Eleventy 3 with `@11ty/eleventy-img` (press thumbnails only) and `@11ty/eleventy-plugin-rss`. Node 22 (`engines` in `package.json`, and in CI). Nunjucks templates. One `css/site.css`. No client framework; one inline script (random hero art).
+- **Dependencies:** Eleventy 3 with `@11ty/eleventy-img` (press thumbnails only) and `@11ty/eleventy-plugin-rss`. Node ≥ 22.2 (`"engines": {"node": ">=22.2"}` in `package.json`; CI uses `node-version: 22`, which resolves to the latest 22.x). Nunjucks templates. One `css/site.css`. No client framework; one inline script (random hero art).
 - **Passthrough copy** (`eleventy.config.js`, paths unchanged): `.htaccess`, `img/`, `css/`, `press/**/*.{png,jpg,webp,svg,mp4}` (press originals, logos, video), and `devlog/**/*.{png,jpg,gif,webp,mp4}` (post media). The `.htaccess` copy is load-bearing: without it, WordPress's `.htaccess` stays in charge after cutover.
 - **Layout:** `_includes/` (base layout, partials), `_data/`, `devlog/`, `press/`, `img/`, `css/`, `scripts/check.mjs`, `eleventy.config.js`, `CLAUDE.md`, `.htaccess`, `.github/workflows/deploy.yml`.
 - The current hand-written `index.html` is replaced. `img/og.jpg` and `.htaccess` are kept (the game images are re-cut, see Data); `.htaccess` gains `ErrorDocument 404 /404.html`.
