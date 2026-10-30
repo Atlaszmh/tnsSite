@@ -1,0 +1,63 @@
+[
+  {
+    "slug": "alloy",
+    "name": "Alloy: Delvesmith",
+    "hook": "Every element reacts.",
+    "pitch": "A top-down pixel-art action RPG. Each hero binds two of six elements, and every pair reacts both ways: fire on nature sets off Combust, frost then earth Shatters. You build your moves at the Anvil as chains of up to five, each with its own form, elements and rune sockets.",
+    "status": "Playtest",
+    "platforms": ["Web browser"],
+    "pixelArt": true,
+    "art": {
+      "hero": "/img/alloy-hero.webp",
+      "tile": "/img/alloy-tile.webp",
+      "alt": "A pixel-art hero swings a greatsword at a hulking foreman in a mine lit by molten cracks."
+    },
+    "links": { "play": "https://alloy.toothandscale.com/", "wishlist": "", "site": "" },
+    "press": {
+      "release": "",
+      "price": "",
+      "description": "Alloy: Delvesmith is a top-down pixel-art action RPG built by one developer. Each hero binds two of six elements, and every pair of elements reacts, both ways. Moves are items you build at the Anvil: chains of up to five, each with its own form, elements and rune sockets. It is in development and playable in the browser during playtesting.",
+      "features": [
+        "Six elements, and every pair reacts both ways: fire on nature sets off Combust, frost then earth Shatters.",
+        "Build your own moves at the Anvil: chains of up to five, each with its own form, elements and rune sockets.",
+        "Bosses with scripted phases and break gauges.",
+        "Playable now in the browser while in playtest."
+      ],
+      "history": "",
+      "video": "/press/alloy/alloy-teaser.mp4",
+      "quotes": [],
+      "credits": []
+    }
+  },
+  {
+    "slug": "unhappy-campers",
+    "name": "Unhappy Campers",
+    "hook": "You forgot the tent stakes. The raccoons did not forget your truck keys.",
+    "pitch": "A 2–4 player physics co-op camping trip that goes wrong in three acts. Pack late, camp badly, then hike out in the dark after the raccoons take the truck. One run takes about an hour.",
+    "status": "In development",
+    "platforms": ["PC"],
+    "pixelArt": false,
+    "art": {
+      "hero": "/img/campers-hero.webp",
+      "tile": "/img/campers-tile.webp",
+      "alt": "A small campfire in a clearing ringed by redwoods and autumn trees."
+    },
+    "links": { "play": "", "wishlist": "", "site": "" },
+    "press": {
+      "release": "",
+      "price": "",
+      "description": "Unhappy Campers is a co-op camping trip for 2–4 players (up to 6 in clown-car lobbies) that goes wrong in three acts: you pack late, you camp badly, and then raccoons steal your truck and you hike out in the dark. Required gear, poisonous berries and the rules of the night change every run, so players learn by eating, guessing and arguing.",
+      "features": [
+        "Three acts in one run: a packing scramble at home, a day making camp, and a night hike out after the raccoons take the truck.",
+        "Nature is petty, then dangerous: squirrels and raccoons steal by day, bears are real danger, and cryptids own the night.",
+        "The rules change every run: required items, poisonous berries and cryptid rules are randomized.",
+        "Everything you do earlier pays off later: what you pack feeds camp, and camp feeds the escape.",
+        "A full run fits in about an hour, and a failed run should be funny, not a waste of time."
+      ],
+      "history": "",
+      "video": "",
+      "quotes": [],
+      "credits": []
+    }
+  }
+]

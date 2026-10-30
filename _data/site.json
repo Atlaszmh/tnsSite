@@ -1,0 +1,15 @@
+{
+  "name": "Tooth and Scale",
+  "url": "https://toothandscale.com",
+  "tagline": "We make games where systems collide and things go loudly wrong.",
+  "about": "Tooth and Scale is an independent game studio. Right now it is one person, a stack of design docs, and a few test bots that play the games around the clock so the balance holds up before real players arrive. We like systems that combine in ways nobody planned, and failures that are funny instead of punishing.",
+  "description": {
+    "short": "Tooth and Scale is an independent game studio making Alloy: Delvesmith and Unhappy Campers.",
+    "long": "Tooth and Scale is a one-person independent game studio. Its first two games are Alloy: Delvesmith, a pixel-art action RPG where every pair of elements reacts, and Unhappy Campers, a co-op camping trip that goes wrong in three acts. Both are in development."
+  },
+  "history": "",
+  "basedIn": "",
+  "pressEmail": "",
+  "channels": { "discord": "", "steam": "", "bluesky": "", "x": "", "tiktok": "", "youtube": "", "newsletter": "" },
+  "channelNames": { "discord": "Discord", "steam": "Steam", "bluesky": "Bluesky", "x": "X", "tiktok": "TikTok", "youtube": "YouTube", "newsletter": "Newsletter" }
+}
