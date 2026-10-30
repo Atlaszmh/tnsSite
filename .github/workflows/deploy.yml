@@ -16,10 +16,22 @@ jobs:
       FTP_HOST: ${{ secrets.FTP_HOST }}
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm test
+      - run: npm run build
+      - run: npm run check
+      - name: Press zips open
+        run: |
+          shopt -s nullglob
+          for z in _site/press/*/*.zip; do unzip -tq "$z"; done
 
       # Skipped until the FTP secrets are set in the repo. The FTP account must be rooted at
-      # public_html (the main domain), not a game subdomain's folder. The action only deletes files
-      # it uploaded itself, so the subdomain folders and the old WordPress files are left alone.
+      # public_html (the main domain). The action deletes only files it uploaded itself, so the
+      # subdomain folders and the old WordPress files are left alone.
       - name: Deploy via FTP
         if: env.FTP_HOST != ''
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
@@ -27,8 +39,5 @@ jobs:
           server: ${{ secrets.FTP_HOST }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: ./
+          local-dir: ./_site/
           server-dir: ./
-          exclude: |
-            **/.git*
-            **/.git*/**
