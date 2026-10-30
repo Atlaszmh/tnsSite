@@ -30,6 +30,8 @@ a { color: inherit; }
 .nav { display: flex; justify-content: space-between; align-items: center; gap: 16px; max-width: 1200px; margin: 0 auto; padding: 18px var(--gutter); }
 .home .nav { position: absolute; top: 0; left: 0; right: 0; z-index: 10; }
 .wordmark { font: 400 .95rem/1 var(--pixel); color: var(--gold); letter-spacing: .04em; text-decoration: none; }
+/* Silkscreen draws & like a dollar sign. */
+.wordmark span { font: 800 1.15em/1 var(--display); color: var(--accent); }
 .nav-toggle { display: none; font: 400 .75rem/1 var(--pixel); color: var(--text); background: none; border: 2px solid var(--text); padding: 8px 10px; cursor: pointer; }
 #nav-menu { display: flex; gap: 28px; position: static; inset: auto; margin: 0; padding: 0; border: 0; background: none; color: inherit; overflow: visible; width: auto; height: auto; }
 #nav-menu a, .footer a, .footer small { font: 400 .75rem/1 var(--pixel); color: var(--muted); text-transform: uppercase; letter-spacing: .06em; text-decoration: none; }
