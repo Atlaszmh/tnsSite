@@ -1,0 +1,11 @@
+<footer class="footer">
+  <a class="wordmark" href="/">TOOTH &amp; SCALE</a>
+  <nav>
+    <a href="/#games">Games</a>
+    <a href="/devlog/">Devlog</a>
+    <a href="/press/">Press</a>
+    <a href="/devlog/feed.xml">Feed</a>
+  </nav>
+  {% if site.pressEmail %}<a href="mailto:{{ site.pressEmail }}">{{ site.pressEmail }}</a>{% endif %}
+  <small>© {{ year }} {{ site.name }}</small>
+</footer>

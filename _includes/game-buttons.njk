@@ -1,0 +1,6 @@
+<div class="buttons">
+  {% if g.links.play %}<a class="btn" href="{{ g.links.play }}">Play</a>{% endif %}
+  {% if g.links.wishlist %}<a class="btn" href="{{ g.links.wishlist }}">Wishlist</a>{% endif %}
+  {% if g.links.site %}<a class="btn btn-alt" href="{{ g.links.site }}">Site</a>{% endif %}
+  <a class="btn btn-alt" href="/press/{{ g.slug }}/">Press kit</a>
+</div>
