@@ -1,0 +1,69 @@
+---
+layout: base.njk
+bodyClass: home
+---
+{% set latest = collections.posts[0] %}
+<section class="hero" style="--hero: url({{ games[0].art.hero }})" data-art="{{ games | pluck('art.hero') | dump }}">
+  <div class="wrap hero-inner">
+    <p class="kicker">Independent game studio</p>
+    <h1 class="hero-title">Tooth <span>&amp;</span> Scale</h1>
+    <p class="hero-tagline">{{ site.tagline }}</p>
+    <div class="tiles">
+      {% for g in games %}
+      <a class="tile{% if g.pixelArt %} pixel{% endif %}" href="{{ g.links.site or ('#game-' + g.slug) }}" style="background-image: url({{ g.art.tile }})">
+        <span class="chip">{{ g.status }}</span>
+        <span class="tile-name">{{ g.name }}</span>
+      </a>
+      {% endfor %}
+      {% if latest %}
+      <a class="tile tile-post" href="{{ latest.url }}">
+        <span class="chip">Latest devlog</span>
+        <span class="tile-name">{{ latest.data.title }}</span>
+      </a>
+      {% endif %}
+    </div>
+  </div>
+</section>
+<script>
+  (h => { const a = JSON.parse(h.dataset.art); h.style.setProperty("--hero", `url(${a[Math.floor(Math.random() * a.length)]})`); })(document.querySelector(".hero"));
+</script>
+
+<section id="games" class="wrap section">
+  <h2 class="section-title">Games</h2>
+  {% for g in games %}
+  <article class="game" id="game-{{ g.slug }}">
+    <img class="game-art{% if g.pixelArt %} pixel{% endif %}" src="{{ g.art.tile }}" width="960" height="540" alt="{{ g.art.alt }}" loading="lazy">
+    <div>
+      <p class="kicker">{{ g.status }} · {{ g.platforms | join(" · ") }}</p>
+      <h3 class="game-name">{{ g.name }}</h3>
+      <p class="game-hook">{{ g.hook }}</p>
+      <p>{{ g.pitch }}</p>
+      {% include "game-buttons.njk" %}
+    </div>
+  </article>
+  {% endfor %}
+</section>
+
+{% if collections.posts.length %}
+<section class="wrap section">
+  <div class="section-head"><h2 class="section-title">From the devlog</h2><a href="/devlog/">All posts →</a></div>
+  <div class="cards">
+    {% for post in collections.posts | head(3) %}{% include "post-card.njk" %}{% endfor %}
+  </div>
+</section>
+{% endif %}
+
+<section id="about" class="wrap section about">
+  <h2 class="section-title">About the studio</h2>
+  <p>{{ site.about }}</p>
+</section>
+
+{% set channels = site.channels | compactEntries %}
+{% if channels.length %}
+<section class="wrap section">
+  <h2 class="section-title">Follow along</h2>
+  <div class="buttons">
+    {% for c in channels %}<a class="btn btn-alt" href="{{ c[1] }}">{{ site.channelNames[c[0]] }}</a>{% endfor %}
+  </div>
+</section>
+{% endif %}

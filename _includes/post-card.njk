@@ -1,0 +1,10 @@
+{% set pg = post.data.game | gameBySlug %}
+<a class="card{% if pg.pixelArt %} pixel{% endif %}" href="{{ post.url }}">
+  <img src="{{ post.url }}{{ post.data.cover }}" alt="" loading="lazy">
+  <div class="card-body">
+    <span class="chip">{{ pg.name or site.name }}</span>
+    <h3>{{ post.data.title }}</h3>
+    <time datetime="{{ post.date | isoDate }}">{{ post.date | displayDate }}</time>
+    <p>{{ post.data.summary }}</p>
+  </div>
+</a>
