@@ -76,7 +76,7 @@ export default function (eleventyConfig) {
         fs.mkdirSync(path.dirname(out), { recursive: true });
         await sharp(path.join("press", g.slug, "images", file))
           .resize({ width: 640, kernel: g.pixelArt ? "nearest" : "lanczos3" })
-          .webp({ quality: 80 })
+          .webp(g.pixelArt ? { lossless: true } : { quality: 80 })
           .toFile(out);
       }
     }
