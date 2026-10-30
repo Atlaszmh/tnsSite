@@ -94,6 +94,7 @@ a { color: inherit; }
 .prose h3 { margin: 1.8em 0 .5em; font: 800 1.25rem/1.2 var(--display); }
 .prose img, .prose video { width: 100%; margin: 1.6em 0; border: 2px solid var(--line); }
 .prose a { color: var(--accent); }
+.prose a.btn { color: var(--bg); text-decoration: none; }
 .prose code { padding: .1em .35em; background: var(--surface); font-family: ui-monospace, monospace; }
 .prose blockquote { margin: 1.5em 0; padding: .2em 0 .2em 1.2em; border-left: 4px solid var(--accent); color: var(--muted); }
 .prose iframe, .video { width: 100%; aspect-ratio: 16 / 9; border: 0; }

@@ -1,0 +1,61 @@
+---
+layout: base.njk
+pagination:
+  data: games
+  size: 1
+  alias: g
+permalink: "/press/{{ g.slug }}/"
+eleventyComputed:
+  title: "{{ g.name }} press kit"
+---
+{% set images = pressImages[g.slug] %}
+{% set logo = pressLogos[g.slug] %}
+{% set yt = g.press.video | youtubeEmbed %}
+<section class="wrap section press">
+  <p class="kicker"><a href="/press/">Press kit</a> / {{ g.name }}</p>
+  <h1 class="page-title">{{ g.name }}</h1>
+  <p class="game-hook">{{ g.hook }}</p>
+  <div class="press-grid">
+    <dl class="facts">
+      <dt>Developer</dt><dd><a href="/press/">{{ site.name }}</a></dd>
+      <dt>Release</dt><dd>{{ g.press.release or "TBA" }}</dd>
+      <dt>Platforms</dt><dd>{{ g.platforms | join(", ") }}</dd>
+      <dt>Status</dt><dd>{{ g.status }}</dd>
+      <dt>Price</dt><dd>{{ g.press.price or "TBA" }}</dd>
+      {% if g.links.site %}<dt>Website</dt><dd><a href="{{ g.links.site }}">{{ g.links.site | replace("https://", "") }}</a></dd>{% endif %}
+      {% if g.links.play %}<dt>Play</dt><dd><a href="{{ g.links.play }}">{{ g.links.play | replace("https://", "") }}</a></dd>{% endif %}
+      {% if g.links.wishlist %}<dt>Steam</dt><dd><a href="{{ g.links.wishlist }}">Wishlist</a></dd>{% endif %}
+      {% if site.pressEmail %}<dt>Press</dt><dd><a href="mailto:{{ site.pressEmail }}">{{ site.pressEmail }}</a></dd>{% endif %}
+    </dl>
+    <div class="prose">
+      <h2>Description</h2>
+      <p>{{ g.press.description }}</p>
+      {% if g.press.features.length %}
+      <h2>Features</h2>
+      <ul>{% for f in g.press.features %}<li>{{ f }}</li>{% endfor %}</ul>
+      {% endif %}
+      {% if g.press.history %}<h2>History</h2><p>{{ g.press.history }}</p>{% endif %}
+      {% if g.press.video %}
+      <h2>Video</h2>
+      {% if yt %}<iframe class="video" src="{{ yt }}" title="{{ g.name }} video" allowfullscreen loading="lazy"></iframe>
+      {% else %}<video class="video" src="{{ g.press.video }}" controls preload="metadata"></video>{% endif %}
+      {% endif %}
+      {% if images.length %}
+      <h2>Images</h2>
+      <a class="btn" href="/press/{{ g.slug }}/{{ g.slug }}-images.zip">Download all (.zip)</a>
+      <div class="shots{% if g.pixelArt %} pixel{% endif %}">
+        {% for f in images %}<a href="/press/{{ g.slug }}/images/{{ f }}"><img src="{{ f | thumbUrl(g.slug) }}" alt="{{ g.name }} screenshot {{ loop.index }}" width="640" loading="lazy"></a>{% endfor %}
+      </div>
+      {% endif %}
+      {% if logo %}<h2>Logo</h2><div class="logos"><a href="/press/{{ g.slug }}/{{ logo }}"><img src="/press/{{ g.slug }}/{{ logo }}" alt="{{ g.name }} logo"></a></div>{% endif %}
+      {% if g.press.quotes.length %}
+      <h2>Quotes</h2>
+      {% for q in g.press.quotes %}<blockquote><p>{{ q.text }}</p><cite>{% if q.url %}<a href="{{ q.url }}">{{ q.source }}</a>{% else %}{{ q.source }}{% endif %}</cite></blockquote>{% endfor %}
+      {% endif %}
+      {% if g.press.credits.length %}
+      <h2>Credits</h2>
+      <dl class="facts">{% for c in g.press.credits %}<dt>{{ c.role }}</dt><dd>{{ c.name }}</dd>{% endfor %}</dl>
+      {% endif %}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,35 @@
+---
+layout: base.njk
+title: Press kit
+permalink: /press/
+---
+{% set channels = site.channels | compactEntries %}
+<section class="wrap section press">
+  <p class="kicker">Press kit</p>
+  <h1 class="page-title">{{ site.name }}</h1>
+  <div class="press-grid">
+    <dl class="facts">
+      <dt>Developer</dt><dd>{{ site.name }}</dd>
+      {% if site.basedIn %}<dt>Based in</dt><dd>{{ site.basedIn }}</dd>{% endif %}
+      <dt>Website</dt><dd><a href="{{ site.url }}/">{{ site.url | replace("https://", "") }}</a></dd>
+      {% if site.pressEmail %}<dt>Press</dt><dd><a href="mailto:{{ site.pressEmail }}">{{ site.pressEmail }}</a></dd>{% endif %}
+      {% if channels.length %}<dt>Social</dt><dd>{% for c in channels %}<a href="{{ c[1] }}">{{ site.channelNames[c[0]] }}</a>{% if not loop.last %}, {% endif %}{% endfor %}</dd>{% endif %}
+    </dl>
+    <div class="prose">
+      <h2>Description</h2>
+      <p>{{ site.description.long }}</p>
+      {% if site.history %}<h2>History</h2><p>{{ site.history }}</p>{% endif %}
+      <h2>Projects</h2>
+      <ul>
+        {% for g in games %}<li><a href="/press/{{ g.slug }}/">{{ g.name }}</a>: {{ g.status }}</li>{% endfor %}
+      </ul>
+      {% if studioLogos.length %}
+      <h2>Logo</h2>
+      <div class="logos">
+        {% for l in studioLogos %}<a href="/press/studio/{{ l }}"><img src="/press/studio/{{ l }}" alt="{{ site.name }} wordmark ({{ l }})"></a>{% endfor %}
+      </div>
+      {% endif %}
+      {% if site.pressEmail %}<h2>Contact</h2><p><a href="mailto:{{ site.pressEmail }}">{{ site.pressEmail }}</a></p>{% endif %}
+    </div>
+  </div>
+</section>
