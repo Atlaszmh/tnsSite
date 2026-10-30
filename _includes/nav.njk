@@ -2,7 +2,7 @@
   <a class="wordmark" href="/">TOOTH &amp; SCALE</a>
   <button class="nav-toggle" popovertarget="nav-menu" aria-label="Open menu">Menu</button>
   {# Closing on link tap matters on the home page, where the links are same-page anchors. #}
-  <nav id="nav-menu" popover onclick="if (event.target.closest('a')) this.hidePopover()">
+  <nav id="nav-menu" aria-label="Primary" popover onclick="if (event.target.closest('a')) this.hidePopover()">
     <a href="/#games">Games</a>
     <a href="/devlog/">Devlog</a>
     <a href="/press/">Press</a>
