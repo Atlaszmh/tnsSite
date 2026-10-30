@@ -48,7 +48,7 @@ a { color: inherit; }
 .hero-inner { position: relative; width: 100%; }
 .hero-title { margin: 0; font: 800 clamp(3.5rem, 12vw, 9rem)/.85 var(--display); letter-spacing: -.03em; text-transform: uppercase; }
 .hero-title span { color: var(--accent); }
-.hero-tagline { max-width: 32ch; margin: 1rem 0 2.5rem; color: var(--muted); font-size: 1.2rem; }
+.hero-tagline { max-width: 32ch; margin: 1rem 0 2.5rem; color: var(--muted); font-size: 1.2rem; text-shadow: 0 0 6px var(--bg), 0 0 2px var(--bg); }
 .tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; }
 .tile { position: relative; isolation: isolate; display: flex; flex-direction: column; justify-content: flex-end; gap: 4px; aspect-ratio: 16 / 9; padding: 12px 14px; background: var(--surface) center / cover no-repeat; border: 2px solid var(--text); box-shadow: 5px 5px 0 var(--accent); text-decoration: none; transition: transform .15s, box-shadow .15s; }
 .tile::before { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(0deg, rgb(13 15 20 / .9), rgb(13 15 20 / 0) 60%); }
