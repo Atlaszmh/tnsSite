@@ -7,7 +7,7 @@ on:
 
 concurrency:
   group: deploy
-  cancel-in-progress: true
+  cancel-in-progress: false  # never cut an FTP upload off halfway
 
 jobs:
   deploy:
@@ -41,3 +41,4 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: ./_site/
           server-dir: ./
+          protocol: ftps

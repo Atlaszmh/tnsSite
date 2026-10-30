@@ -21,7 +21,7 @@ export default function (eleventyConfig) {
   eleventyConfig.addPlugin(rssPlugin);
 
   for (const p of ["docs/**", "README.md", "CLAUDE.md", ".superpowers/**"]) eleventyConfig.ignores.add(p);
-  for (const p of [".htaccess", "img", "css", "press/**/*.{png,jpg,webp,svg,mp4}", "devlog/**/*.{png,jpg,gif,webp,mp4}"]) {
+  for (const p of [".htaccess", "img", "css", "press/**/*.{png,jpg,webp,svg,mp4}", "devlog/**/*.{png,jpg,jpeg,gif,webp,svg,mp4,webm}"]) {
     eleventyConfig.addPassthroughCopy(p);
   }
 
@@ -34,11 +34,11 @@ export default function (eleventyConfig) {
       if (p.data.game !== "studio" && !slugs.has(p.data.game)) {
         throw new Error(`${p.inputPath}: game "${p.data.game}" is not a slug in games.json or "studio"`);
       }
-      // `date` always has a value (Eleventy falls back to the file's date, which on CI is checkout
-      // time), so require it to match the folder's YYYY-MM-DD prefix instead.
+      // `date` always has a value (inferred from the folder name when frontmatter omits it), so the
+      // real check is that the folder has a YYYY-MM-DD prefix and any frontmatter date agrees with it.
       const folderDate = p.inputPath.match(/devlog\/(\d{4}-\d{2}-\d{2})-/)?.[1];
       if (folderDate !== p.date.toISOString().slice(0, 10)) {
-        throw new Error(`${p.inputPath}: frontmatter date must be set and match the folder prefix (${folderDate ?? "none"})`);
+        throw new Error(`${p.inputPath}: folder needs a YYYY-MM-DD- prefix and frontmatter date must match it (${folderDate ?? "none"})`);
       }
     }
     return posts.reverse();

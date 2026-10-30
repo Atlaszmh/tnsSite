@@ -29,12 +29,12 @@ The Tooth and Scale studio site: an Eleventy 3 static site, FTP-deployed to `pub
    cover: cover.png
    ---
    ```
-   The build fails if any field is missing or `game` is unknown.
-   - Eleventy infers the date from the folder name if `date` is absent. A frontmatter `date` that differs from the folder's `YYYY-MM-DD` prefix fails the build.
+   The build fails if `title`, `game`, `summary` or `cover` is missing, or `game` is unknown.
+   - `date` is optional: the folder prefix is the source of truth. The build fails if the folder has no `YYYY-MM-DD-` prefix or a frontmatter `date` disagrees with it.
    - `cover` must be a bare filename that sits next to `index.md` (for example `cover.png`), because templates build `post.url + cover`.
 4. Media goes in the same folder, referenced relatively (`![Alt text](combust.png)`):
-   - cover: 1200×630 or larger, `cover.png`
-   - images: ≤1920px wide, PNG or JPG; for pixel art scale with `flags=neighbor`
+   - cover: 1200×630, ideally `cover.jpg` around 200 KB (it loads on every card and in link previews; pixel-art covers can stay PNG)
+   - images: ≤1920px wide; only png, jpg, jpeg, gif, webp, svg, mp4 and webm are copied to the site. For pixel art scale with `flags=neighbor`
    - clips: `.mp4` (H.264, `-movflags +faststart`, keep each under ~8 MB), embedded as `<video src="clip.mp4" controls muted loop playsinline></video>`
    - YouTube: a plain `<iframe>` with a `youtube-nocookie.com/embed/<id>` src
    - every image gets real alt text
