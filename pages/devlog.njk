@@ -1,0 +1,15 @@
+---
+layout: base.njk
+title: Devlog
+permalink: /devlog/
+---
+<section class="wrap section">
+  <div class="section-head"><h1 class="section-title">Devlog</h1><a href="/devlog/feed.xml">Feed</a></div>
+  {% if collections.posts.length %}
+  <div class="cards">
+    {% for post in collections.posts %}{% include "post-card.njk" %}{% endfor %}
+  </div>
+  {% else %}
+  <p class="hero-tagline">No posts yet.</p>
+  {% endif %}
+</section>

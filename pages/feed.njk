@@ -1,0 +1,25 @@
+---
+permalink: /devlog/feed.xml
+eleventyExcludeFromCollections: true
+---
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>{{ site.name }} devlog</title>
+  <subtitle>{{ site.description.short }}</subtitle>
+  <link href="{{ site.url }}/devlog/feed.xml" rel="self"/>
+  <link href="{{ site.url }}/devlog/"/>
+  <id>{{ site.url }}/devlog/</id>
+  <updated>{% if collections.posts.length %}{{ collections.posts | getNewestCollectionItemDate | dateToRfc3339 }}{% else %}{{ now | dateToRfc3339 }}{% endif %}</updated>
+  <author><name>{{ site.name }}</name></author>
+  {%- for post in collections.posts %}
+  {%- set absUrl = site.url + post.url %}
+  <entry>
+    <title>{{ post.data.title }}</title>
+    <link href="{{ absUrl }}"/>
+    <id>{{ absUrl }}</id>
+    <updated>{{ post.date | dateToRfc3339 }}</updated>
+    <summary>{{ post.data.summary }}</summary>
+    <content type="html">{{ post.templateContent | htmlToAbsoluteUrls(absUrl) }}</content>
+  </entry>
+  {%- endfor %}
+</feed>

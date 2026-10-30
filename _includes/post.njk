@@ -1,0 +1,28 @@
+---
+layout: base.njk
+---
+{% set g = game | gameBySlug %}
+<article class="wrap post{% if g.pixelArt %} pixel{% endif %}">
+  <img class="post-cover" src="{{ cover }}" alt="" width="1200" height="630">
+  <p class="kicker"><span class="chip">{{ g.name or site.name }}</span> · <time datetime="{{ page.date | isoDate }}">{{ page.date | displayDate }}</time></p>
+  <h1 class="post-title">{{ title }}</h1>
+  <div class="prose">
+    {{ content | safe }}
+  </div>
+  {% if g %}
+  <aside class="cta">
+    <img class="{% if g.pixelArt %}pixel{% endif %}" src="{{ g.art.tile }}" alt="{{ g.art.alt }}" loading="lazy">
+    <div>
+      <h2>{{ g.name }}</h2>
+      <p>{{ g.hook }}</p>
+      {% include "game-buttons.njk" %}
+    </div>
+  </aside>
+  {% endif %}
+  {% set newer = collections.posts | getPreviousCollectionItem %}
+  {% set older = collections.posts | getNextCollectionItem %}
+  <nav class="post-nav">
+    {% if older %}<a class="older" href="{{ older.url }}">← {{ older.data.title }}</a>{% endif %}
+    {% if newer %}<a class="newer" href="{{ newer.url }}">{{ newer.data.title }} →</a>{% endif %}
+  </nav>
+</article>
