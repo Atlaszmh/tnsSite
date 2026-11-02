@@ -21,7 +21,7 @@ export default function (eleventyConfig) {
   eleventyConfig.addPlugin(rssPlugin);
 
   for (const p of ["docs/**", "README.md", "CLAUDE.md", ".superpowers/**"]) eleventyConfig.ignores.add(p);
-  for (const p of [".htaccess", "img", "css", "press/**/*.{png,jpg,webp,svg,mp4}", "devlog/**/*.{png,jpg,jpeg,gif,webp,svg,mp4,webm}"]) {
+  for (const p of [".htaccess", "img", "css", "press/**/*.{png,jpg,gif,webp,svg,mp4}", "devlog/**/*.{png,jpg,jpeg,gif,webp,svg,mp4,webm}"]) {
     eleventyConfig.addPassthroughCopy(p);
   }
 

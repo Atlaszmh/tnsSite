@@ -40,7 +40,8 @@
     "art": {
       "hero": "/img/campers-hero.webp",
       "tile": "/img/campers-tile.webp",
-      "alt": "Overhead view of a campsite: a parked truck, a campfire and a creek among autumn trees."
+      "alt": "Two campers carrying a big red cooler between them trip over each other in the middle of camp.",
+      "loop": ["/img/campers-loop.webm", "/img/campers-loop.mp4"]
     },
     "links": { "play": "", "wishlist": "", "site": "" },
     "press": {
@@ -55,7 +56,18 @@
         "A full run fits in about an hour, and a failed run should be funny, not a waste of time."
       ],
       "history": "",
-      "video": "",
+      "video": "/press/unhappy-campers/unhappy-campers-trailer.mp4",
+      "videoPoster": "/press/unhappy-campers/images/unhappy-campers-00.jpg",
+      "clips": [
+        { "file": "raccoon-cooler", "caption": "A raccoon pops up behind the cooler." },
+        { "file": "squirrel-pounce", "caption": "A squirrel drops out of a tree onto a camper." },
+        { "file": "lake-toss", "caption": "Two campers throw the third off the dock." },
+        { "file": "cooler-carry", "caption": "The big cooler takes two people. One of them trips." },
+        { "file": "log-trip", "caption": "A barefoot sprint ends at the raccoon log." },
+        { "file": "fanny-pack-heist", "caption": "A raccoon goes through a knocked-out camper's fanny pack." },
+        { "file": "play-dead-pile", "caption": "Four campers play dead at once." },
+        { "file": "tent-pitch", "caption": "Pitching the tent without the stakes." }
+      ],
       "quotes": [],
       "credits": []
     }

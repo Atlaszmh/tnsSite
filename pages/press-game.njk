@@ -38,7 +38,13 @@ eleventyComputed:
       {% if g.press.video %}
       <h2>Video</h2>
       {% if yt %}<iframe class="video" src="{{ yt }}" title="{{ g.name }} video" allowfullscreen loading="lazy"></iframe>
-      {% else %}<video class="video" src="{{ g.press.video }}" controls preload="metadata"></video>{% endif %}
+      {% else %}<video class="video" src="{{ g.press.video }}" controls preload="metadata"{% if g.press.videoPoster %} poster="{{ g.press.videoPoster }}"{% endif %}></video>{% endif %}
+      {% endif %}
+      {% if g.press.clips.length %}
+      <h2>Clips</h2>
+      <div class="clips">
+        {% for c in g.press.clips %}<figure><video src="/press/{{ g.slug }}/clips/{{ c.file }}.mp4" autoplay muted loop playsinline preload="metadata" aria-label="{{ c.caption }}"></video><figcaption>{{ c.caption }} <a href="/press/{{ g.slug }}/clips/{{ c.file }}.gif" download>GIF</a></figcaption></figure>{% endfor %}
+      </div>
       {% endif %}
       {% if images.length %}
       <h2>Images</h2>

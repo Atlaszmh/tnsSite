@@ -48,6 +48,8 @@ a { color: inherit; }
 .hero { position: relative; display: flex; align-items: flex-end; min-height: min(100svh, 860px); padding: 120px 0 48px; background: var(--bg) var(--hero) center / cover no-repeat; }
 .hero::before { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgb(13 15 20 / .7), rgb(13 15 20 / 0) 160px), linear-gradient(90deg, var(--bg) 20%, rgb(13 15 20 / .25) 75%), linear-gradient(0deg, var(--bg) 0%, rgb(13 15 20 / 0) 45%); }
 .hero-inner { position: relative; width: 100%; }
+.hero { isolation: isolate; }
+.hero-video { position: absolute; inset: 0; z-index: -1; width: 100%; height: 100%; object-fit: cover; }
 .hero-title { margin: 0; font: 800 clamp(3.5rem, 12vw, 9rem)/.85 var(--display); letter-spacing: -.03em; text-transform: uppercase; }
 .hero-title span { color: var(--accent); }
 .hero-tagline { max-width: 32ch; margin: 1rem 0 2.5rem; color: var(--muted); font-size: 1.2rem; text-shadow: 0 0 6px var(--bg), 0 0 2px var(--bg); }
@@ -120,6 +122,10 @@ a { color: inherit; }
 .press .prose > h2:first-child { margin-top: 0; }
 .shots { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 14px; margin-top: 18px; }
 .prose .shots img { margin: 0; aspect-ratio: 16 / 9; object-fit: cover; }
+.clips { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 18px; margin-top: 18px; }
+.clips figure { margin: 0; }
+.prose .clips video { margin: 0; aspect-ratio: 16 / 9; object-fit: cover; }
+.clips figcaption { margin-top: 6px; color: var(--muted); font-size: .9rem; }
 .logos { display: flex; flex-wrap: wrap; gap: 14px; }
 .prose .logos img { width: auto; max-height: 120px; margin: 0; background: repeating-conic-gradient(#222 0 25%, #333 0 50%) 0 0 / 16px 16px; }
 

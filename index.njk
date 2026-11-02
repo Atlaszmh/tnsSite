@@ -3,7 +3,7 @@ layout: base.njk
 bodyClass: home
 ---
 {% set latest = collections.posts[0] %}
-<section class="hero" style="--hero: url({{ games[0].art.hero }})" data-art="{{ games | pluck('art.hero') | dump }}">
+<section class="hero" style="--hero: url({{ games[0].art.hero }})" data-art="{{ games | pluck('art') | dump }}">
   <div class="wrap hero-inner">
     <p class="kicker">Independent game studio</p>
     <h1 class="hero-title">Tooth <span>&amp;</span> Scale</h1>
@@ -25,14 +25,26 @@ bodyClass: home
   </div>
 </section>
 <script>
-  (h => { const a = JSON.parse(h.dataset.art); h.style.setProperty("--hero", `url(${a[Math.floor(Math.random() * a.length)]})`); })(document.querySelector(".hero"));
+  (h => {
+    const a = JSON.parse(h.dataset.art), art = a[Math.floor(Math.random() * a.length)];
+    const still = matchMedia("(prefers-reduced-motion: reduce)").matches;
+    h.style.setProperty("--hero", `url(${art.hero})`);
+    if (art.loop && !still) {
+      const v = Object.assign(document.createElement("video"), { className: "hero-video", muted: true, loop: true, autoplay: true, playsInline: true, poster: art.hero });
+      v.setAttribute("muted", "");
+      for (const src of art.loop) v.append(Object.assign(document.createElement("source"), { src }));
+      h.prepend(v);
+    }
+    if (still) addEventListener("DOMContentLoaded", () => document.querySelectorAll("video[autoplay]").forEach((v) => v.pause()));
+  })(document.querySelector(".hero"));
 </script>
 
 <section id="games" class="wrap section">
   <h2 class="section-title">Games</h2>
   {% for g in games %}
   <article class="game" id="game-{{ g.slug }}">
-    <img class="game-art{% if g.pixelArt %} pixel{% endif %}" src="{{ g.art.tile }}" width="960" height="540" alt="{{ g.art.alt }}" loading="lazy">
+    {% if g.art.loop %}<video class="game-art" autoplay muted loop playsinline poster="{{ g.art.tile }}" aria-label="{{ g.art.alt }}">{% for src in g.art.loop %}<source src="{{ src }}">{% endfor %}</video>
+    {% else %}<img class="game-art{% if g.pixelArt %} pixel{% endif %}" src="{{ g.art.tile }}" width="960" height="540" alt="{{ g.art.alt }}" loading="lazy">{% endif %}
     <div>
       <p class="kicker">{{ g.status }} · {{ g.platforms | join(" · ") }}</p>
       <h3 class="game-name">{{ g.name }}</h3>
