@@ -102,10 +102,10 @@
       "video": "/press/two-minute-empire/two-minute-empire-teaser.mp4",
       "videoPoster": "/press/two-minute-empire/images/two-minute-empire-01.jpg",
       "clips": [
-        { "file": "chain-merge", "caption": "One Hut sets off a four-step chain up to a City, and the last step pays ×30." },
+        { "file": "palace-chain", "caption": "A Banner becomes a Village and chains four steps up to the Palace. The last step pays ×30: 4,500,000 gold." },
         { "file": "thrive", "caption": "A Temple brings Faith to a City, so it thrives and pays double." },
-        { "file": "first-castle", "caption": "The first Castle pushes the borders out and adds a City to the deck." },
-        { "file": "palace", "caption": "A Castle placed beside a thriving Castle merges into the Palace." },
+        { "file": "double-merge", "caption": "Thriving settlements count double in merges: two Villages make a Town, and it chains into a City." },
+        { "file": "draft", "caption": "The first Castle pauses the clock for a draft: one card of three goes on top of the deck." },
         { "file": "times-up", "caption": "The clock hits 0:00 and the reign is tallied into a grade." }
       ],
       "quotes": [],
