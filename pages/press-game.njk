@@ -11,7 +11,7 @@ eleventyComputed:
 {% set images = pressImages[g.slug] %}
 {% set logo = pressLogos[g.slug] %}
 {% set yt = g.press.video | youtubeEmbed %}
-<section class="wrap section press">
+<section class="wrap section press{% if g.portrait %} portrait{% endif %}">
   <p class="kicker"><a href="/press/">Press kit</a> / {{ g.name }}</p>
   <h1 class="page-title">{{ g.name }}</h1>
   <p class="game-hook">{{ g.hook }}</p>

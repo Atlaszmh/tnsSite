@@ -126,6 +126,12 @@ a { color: inherit; }
 .clips figure { margin: 0; }
 .prose .clips video { margin: 0; aspect-ratio: 16 / 9; object-fit: cover; }
 .clips figcaption { margin-top: 6px; color: var(--muted); font-size: .9rem; }
+/* Phone games (games.json "portrait": true): vertical media, shown whole instead of cropped to 16:9. */
+.portrait .video { width: auto; max-width: 100%; height: min(80vh, 720px); aspect-ratio: 9 / 16; background: #000; }
+.portrait .shots { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); }
+.portrait .prose .shots img { aspect-ratio: auto; }
+.portrait .clips { grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); }
+.portrait .prose .clips video { aspect-ratio: 9 / 16; }
 .logos { display: flex; flex-wrap: wrap; gap: 14px; }
 .prose .logos img { width: auto; max-height: 120px; margin: 0; background: repeating-conic-gradient(#222 0 25%, #333 0 50%) 0 0 / 16px 16px; }
 
