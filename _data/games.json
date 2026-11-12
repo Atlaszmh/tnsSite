@@ -71,5 +71,45 @@
       "quotes": [],
       "credits": []
     }
+  },
+  {
+    "slug": "two-minute-empire",
+    "name": "Two Minute Empire",
+    "hook": "Two minutes to turn a Hut into a Palace.",
+    "pitch": "A two-minute merge puzzle on an 89-hex island, made for a phone held upright. Three alike that touch merge into the next tier, up a ladder of seven from Hut to Palace, and every building pays gold each second. Each reign starts from a 45-card deck, so where you put the pieces matters more than how fast you tap.",
+    "status": "Playtest",
+    "platforms": ["Web browser"],
+    "pixelArt": false,
+    "art": {
+      "hero": "/img/two-minute-empire-hero.webp",
+      "tile": "/img/two-minute-empire-tile.webp",
+      "alt": "Seven hexes of a low-poly island in a dark night sea: a gold-domed palace at the centre, with a castle, a walled city, smaller settlements, a forest and a farm with a windmill around it."
+    },
+    "links": { "play": "https://twominuteempire.toothandscale.com/", "wishlist": "", "site": "" },
+    "press": {
+      "release": "",
+      "price": "Free",
+      "description": "Two Minute Empire is a 120-second merge puzzle built by one developer. Players place pieces from a 45-card deck on an 89-hex island: three or more touching alike merge into the next of seven tiers, from Hut to Palace, and every building pays gold each second. As settlements grow they want Food, then Trade, then Faith, paid for with Lumber and Stone from nearby Forests and Quarries, and a settlement with every need met pays double. It is free to play in the browser, made for a phone held upright, and in playtest.",
+      "features": [
+        "Three or more touching alike merge into the next tier on the hex you placed, and the result can merge again: chains pay ×3, ×10 and ×30 gold.",
+        "Seven tiers from Hut to Palace, each paying about five times the one below: a Hut earns 1 gold a second, a Palace 15,000.",
+        "Villages and bigger push your borders into the fog (a Village by 1 hex, a Town by 2, a City by 3), where more Forests, Quarries and gold veins wait.",
+        "Settlements with every need met thrive: they pay double and count double in merges, so a served district grows from pairs.",
+        "Four peoples, each with its own deck: Heartland build anywhere, Mariners fish and trade from the coast, Woodfolk hunt and worship beside Forests, and Stoneborn build in stone and mine Boulders.",
+        "A daily island, the same for everyone, that rotates through the four peoples, and a link to share any other island."
+      ],
+      "history": "",
+      "video": "/press/two-minute-empire/two-minute-empire-teaser.mp4",
+      "videoPoster": "/press/two-minute-empire/images/two-minute-empire-01.jpg",
+      "clips": [
+        { "file": "chain-merge", "caption": "One Hut sets off a four-step chain up to a City, and the last step pays ×30." },
+        { "file": "thrive", "caption": "A Temple brings Faith to a City, so it thrives and pays double." },
+        { "file": "first-castle", "caption": "The first Castle pushes the borders out and adds a City to the deck." },
+        { "file": "palace", "caption": "A Castle placed beside a thriving Castle merges into the Palace." },
+        { "file": "times-up", "caption": "The clock hits 0:00 and the reign is tallied into a grade." }
+      ],
+      "quotes": [],
+      "credits": []
+    }
   }
 ]

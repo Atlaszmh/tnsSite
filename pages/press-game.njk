@@ -23,7 +23,7 @@ eleventyComputed:
       <dt>Status</dt><dd>{{ g.status }}</dd>
       <dt>Price</dt><dd>{{ g.press.price or "TBA" }}</dd>
       {% if g.links.site %}<dt>Website</dt><dd><a href="{{ g.links.site }}">{{ g.links.site | replace("https://", "") }}</a></dd>{% endif %}
-      {% if g.links.play %}<dt>Play</dt><dd><a href="{{ g.links.play }}">{{ g.links.play | replace("https://", "") }}</a></dd>{% endif %}
+      {% if g.links.play %}<dt>Play</dt><dd><a href="{{ g.links.play }}">{{ g.links.play | replace("https://", "") | escape | replace(".", ".<wbr>") }}</a></dd>{% endif %}
       {% if g.links.wishlist %}<dt>Steam</dt><dd><a href="{{ g.links.wishlist }}">Wishlist</a></dd>{% endif %}
       {% if site.pressEmail %}<dt>Press</dt><dd><a href="mailto:{{ site.pressEmail }}">{{ site.pressEmail }}</a></dd>{% endif %}
     </dl>
